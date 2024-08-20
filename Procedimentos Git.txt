@@ -12,4 +12,3 @@ Para enviar as mudanças para a nuvem:
 3 - git commit -m <"comentário"> # cria o commit/registro de alterações.
 4 - git push origin main # envia as alterações para a main.
 5 - git push -u origin <nome_da_branch> # cria uma branch se ela não existir. # envia as alterações e cria a branch remota caso ela não exista.
-
