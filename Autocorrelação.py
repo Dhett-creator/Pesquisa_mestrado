@@ -3,7 +3,7 @@ import numpy as np
 from mpl_toolkits.axes_grid1.inset_locator import inset_axes
 
 # Carrega os dados dos 'arquivos.csv'
-carregar_originais = np.loadtxt("dados_processados/dados_originais2.txt", delimiter=",")
+carregar_originais = np.loadtxt("dados_processados/dados_originais1.txt", delimiter=",")
 carregar_filtrados = np.loadtxt("dados_processados/dados_originais.txt", delimiter=",")
 
 # Separa as colunas em variáveis distintas
@@ -47,8 +47,8 @@ tam_font = 16
 
 fig, ax = plt.subplots(figsize=(10, 6))
 
-ax.plot(lags, autocorrelacao1, label="Concentração = 1:60", color="black")
-ax.plot(lags, autocorrelacao2, label="Concentração = 1:50", color="C3")
+ax.plot(lags, autocorrelacao1, label="Concentração = 1:70 mL", color="black")
+ax.plot(lags, autocorrelacao2, label="Concentração = 1:60 mL", color="C3")
 ax.set_xlabel("Lag", fontsize=tam_font)
 ax.set_ylabel("Autocorrelação", fontsize=tam_font)
 ax.legend(fontsize=tam_font)
@@ -57,11 +57,10 @@ ax.grid(True)
 
 # Criar o gráfico inset com zoom
 ax_inset = ax.inset_axes([0.35, 0.25, 0.25, 0.5], xlim=(-24, 30), ylim=(0.75, 1))
-ax_inset.plot(lags, autocorrelacao1, label="Concentração = 1:60", lw=2.5, color="black")
+ax_inset.plot(lags, autocorrelacao1, lw=2.5, color="black")
 ax_inset.plot(
     lags,
     autocorrelacao2,
-    label="Concentração = 1:50",
     lw=2.5,
     color="C3",
 )

@@ -62,22 +62,43 @@ plt.rcParams["font.serif"] = ["Times New Roman"]
 
 tam_font = 16
 
-plt.figure(figsize=(10, 6))
+fig, ax = plt.subplots(figsize=(10, 6))
 
-plt.plot(lags, autocorrelacao1, label="Autocorrelação dos dados originais")
-plt.plot(lags, autocorrelacao2, label="Autocorrelação dos dados filtrados")
-plt.plot(
+ax.plot(lags, autocorrelacao1, label="Autocorrelação dos dados originais")
+ax.plot(lags, autocorrelacao2, label="Autocorrelação dos dados filtrados")
+(cross_corr_plot,) = ax.plot(
     lags,
     correlacao_cruzada,
-    label=f"Correlação cruzada; Altura = {altura_correlacao_cruzada_str} ",
+    label=f"Correlação cruzada entre ambos os dados",
     linestyle="--",
+    color="C2",  # Ajusta a cor da curva de correlação cruzada (pode ser personalizado)
 )
-# plt.title("Autocorrelação e Correlação Cruzada", fontsize=tam_font)
-plt.xlabel("Lag", fontsize=tam_font)
-plt.ylabel("Correlação", fontsize=tam_font)
-plt.legend(fontsize=tam_font)
-plt.xticks(fontsize=tam_font)
-plt.yticks(fontsize=tam_font)
-plt.grid(True)
+
+# Destaque o valor inicial da correlação cruzada com uma bolinha da mesma cor da curva
+ax.scatter(
+    0,
+    altura_correlacao_cruzada,
+    color=cross_corr_plot.get_color(),  # Usa a mesma cor da curva de correlação cruzada
+    s=25,  # Tamanho da bolinha
+    zorder=5,  # Garantir que a bolinha fique na frente
+)
+
+# Adiciona anotação com setinha à direita do valor destacado
+ax.annotate(
+    f"{altura_correlacao_cruzada_str}",
+    xy=(0, altura_correlacao_cruzada),
+    xytext=(70, -5),  # ("posição horizontal", "posição vertical")
+    textcoords="offset points",
+    ha="center",
+    fontsize=tam_font,
+    arrowprops=dict(facecolor=cross_corr_plot.get_color(), arrowstyle="->", shrinkB=7),
+)
+
+ax.set_xlabel("Lag", fontsize=tam_font)
+ax.set_ylabel("Correlação", fontsize=tam_font)
+ax.legend(fontsize=tam_font)
+ax.tick_params(axis="both", which="major", labelsize=tam_font)
+ax.grid(True)
+
 plt.savefig("graficos/graf_correlacao_cruzada.pdf", bbox_inches="tight")
 # plt.show()
