@@ -42,7 +42,8 @@ for arquivo in arquivos:
     dados_amostras.append(dados)
 
 # Carregar a fonte Times New Roman explicitamente
-font_path = "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman.ttf"
+#font_path = "/usr/share/fonts/truetype/msttcorefonts/Times_New_Roman.ttf" # Diretório de fontes no ubuntu
+font_path = "/usr/share/fonts/TTF/Times.TTF" # Diretório de fontes no archlinux
 prop = fm.FontProperties(fname=font_path)
 plt.rcParams["font.family"] = prop.get_name()
 
