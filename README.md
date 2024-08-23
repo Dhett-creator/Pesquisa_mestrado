@@ -14,5 +14,5 @@
  ~ git add . # adiciona as mundanças.
  ~ git commit -m <"comentário"> # cria o commit/registro de alterações.
  ~ git push origin main # envia as alterações para a main.
- ~ git push -u origin <nome_da_branch> # cria uma branch se ela não existir. # envia as alterações e cria a branch remota caso ela não exista.
+ ~ git push -u origin <nome_da_branch> # cria uma branch se ela não existir e envia as alterações.
 ```
