@@ -4,7 +4,7 @@
 ```bash
  ~ git init # inicializa o projeto git.
  ~ git branch -M <nomeda_branch> # cria uma nova branch local.
- ~ git remote add origin <link_do_repositório> # conecta ao branch remoto.
+ ~ git remote add origin <link_do_repositório> # conecta a branch remota.
  ~ git pull origin <nome_da_branch_desejada> # pucha todo o conteúdo que estiver na branch remota.
 ```
 
