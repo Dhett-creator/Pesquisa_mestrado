@@ -8,7 +8,7 @@
  ~ git pull origin <nome_da_branch_desejada> # pucha todo o conteúdo que estiver na branch remota.
 ```
 
-### :hammer: Para enviar as mudanças para a nuvem:
+### 📤 Para enviar as mudanças para a nuvem:
 ```bash
  ~ git status # visualiza as alterações feitas no projeto local.
  ~ git add . # adiciona as mundanças.
