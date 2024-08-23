@@ -1,6 +1,6 @@
 # Procedimentos Git
 
-### :hammer: Para criar um novo projeto e o conectar ao repositório na nuvem:
+### :hammer_and_wrench: Para criar um novo projeto e o conectar ao repositório na nuvem:
 ```bash
  ~ git init # inicializa o projeto git.
  ~ git branch -M <nomeda_branch> # cria uma nova branch local.
@@ -8,7 +8,7 @@
  ~ git pull origin <nome_da_branch_desejada> # pucha todo o conteúdo que estiver na branch remota.
 ```
 
-### 📤 Para enviar as mudanças para a nuvem:
+### :outbox_tray: Para enviar as mudanças para a nuvem:
 ```bash
  ~ git status # visualiza as alterações feitas no projeto local.
  ~ git add . # adiciona as mundanças.
