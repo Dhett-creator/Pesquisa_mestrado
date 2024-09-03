@@ -25,12 +25,10 @@ intervalo_tempo = col2[1] - col2[0]
 # Listas para armazenar o número de picos e a densidade de picos
 num_picos_lista = []
 densidade_picos_lista = []
-
-# Lista para armazenar o tempo correspondente a cada intervalo
 tempo_intervalo_lista = []
 
 # Contagem de picos progressiva
-for num_linhas in range(500, len(col1), 10):  # Ajustar o range conforme desejado
+for num_linhas in range(500, len(col1), 10):
     dados_parciais = col1[:num_linhas]
     num_picos = contar_picos(dados_parciais)
     densidade_picos = num_picos / (intervalo_tempo * num_linhas)
@@ -53,23 +51,20 @@ q = (4 * math.pi * n / lamb) * (math.sin(teta / 2))  # Vetor de espalhamento
 list_dnm = []
 for rho in densidade_picos_lista:
     if rho != 0:
-        # O resultado de 'dm' é dado em metros.
         dm = (
             ((kb * temp) / (3 * math.pi * eta))
             * (q**2)
             * (math.sqrt(6) / (2 * math.pi * rho))
         )
-
         dnm = dm * (1 * 10**9)  # Converte o diâmetro para nanômetros
         list_dnm.append(dnm)
 
 # Define o caminho para a pasta "arquivos_gerados"
 caminho_pasta = "arquivos_gerados"
-# Verifica se a pasta "arquivos_gerados" já existe. Caso não exista ela será criada
 if not os.path.exists(caminho_pasta):
     os.makedirs(caminho_pasta)
 
-# Escrever os dados em "num_picos_por_tempo.txt"
+# Escrever os dados em arquivos
 with open(
     os.path.join(caminho_pasta, "num_picos_por_tempo.txt"), "w"
 ) as arquivo_num_picos:
@@ -77,7 +72,6 @@ with open(
     for num_picos, tempo_intervalo in zip(num_picos_lista, tempo_intervalo_lista):
         arquivo_num_picos.write(f"{num_picos},{tempo_intervalo:.4f}\n")
 
-# Escrever os dados em "densid_picos_por_tempo.txt"
 with open(
     os.path.join(caminho_pasta, "densid_picos_por_tempo.txt"), "w"
 ) as arquivo_densidade_picos:
@@ -87,7 +81,6 @@ with open(
     ):
         arquivo_densidade_picos.write(f"{densidade_picos},{tempo_intervalo:.4f}\n")
 
-# Escrever os diâmetros em função dos intervalos de tempo no arquivo 'diametro_por_tempo.txt'
 with open(
     os.path.join(caminho_pasta, "diametro_por_tempo.txt"), "w"
 ) as arquivo_diametro_por_tempo:
@@ -95,63 +88,82 @@ with open(
     for diam, tempo in zip(list_dnm, tempo_intervalo_lista):
         arquivo_diametro_por_tempo.write(f"{diam:.2f},{tempo:.4f}\n")
 
-# Listas para armazenar que dados serão usados para plotagem dos gráficos
+# Preparando para plotagem
 densidade_picos_coly = []
 lista_diam_coly = []
 tempo_intervalo_colx = []
 
-# Leitura dos dados do arquivo "densid_picos_por_tempo.txt"
 with open("arquivos_gerados/densid_picos_por_tempo.txt", "r") as arquivo:
-    # Ignorando o cabeçalho do arquivo
     next(arquivo)
-
-    # Iterando sobre as linhas do arquivo
     for linha in arquivo:
-        # Separando os valores da linha e os adicionando em suas respectivas listas
         valores = linha.strip().split(",")
         densidade_picos_coly.append(float(valores[0]))
         tempo_intervalo_colx.append(float(valores[1]))
 
-# Leitura dos dados do arquivo "diametro_por_tempo.txt"
 with open("arquivos_gerados/diametro_por_tempo.txt", "r") as arquivo:
-    # Pula o cabeçalho
     next(arquivo)
     for linha in arquivo:
-        # Separa os valores da variável 'valores'
         valores = linha.strip().split(",")
         lista_diam_coly.append(float(valores[0]))
 
-# Plotando o gráfico de densidade de picos
+# Configurações de plotagem
 plt.rcParams["font.family"] = ["DeJavu Serif"]
 plt.rcParams["font.serif"] = ["Times New Roman"]
 
-tam_font = 16
+tam_font = 19
 
-plt.figure(figsize=(10, 6))
-plt.plot(tempo_intervalo_colx, densidade_picos_coly)
-plt.title("Densidade de picos por intervalo de tempo", fontsize=tam_font)
-plt.xlabel("Tempo (s)", fontsize=tam_font)
-plt.ylabel(r"$\langle \rho \rangle$", fontsize=tam_font)
-plt.xticks(fontsize=tam_font)
-plt.yticks(fontsize=tam_font)
-plt.grid(True)
-# plt.savefig("graficos/graf_densidade_picos.pdf", bbox_inches="tight")
-# plt.show(block=False)
+# Densidade média de máximos
+dens_media = np.mean(densidade_picos_coly[7765:])
+dens_media_str = f"{dens_media:.2f}".replace(".", ",")
 
 # Diâmetro médio
-diam_final = np.mean(lista_diam_coly[7765:])  # Intervalo da análise [250s:]
+diam_final = np.mean(lista_diam_coly[7765:])
 diam_final_str = f"{diam_final:.2f}".replace(".", ",")
-print(f"Diâmetro médio: {diam_final_str} nm")
+
+# Criar subplots
+fig, axs = plt.subplots(2, 1, figsize=(12, 14))
+
+# Plotando o gráfico de densidade de picos
+axs[0].plot(
+    tempo_intervalo_colx, densidade_picos_coly, label="Valores da densidade de máximos"
+)
+axs[0].set_xlabel("Tempo (s)", fontsize=tam_font)
+axs[0].set_ylabel(r"Densidade de máximos ($s^{-1}$)", fontsize=tam_font)
+axs[0].tick_params(axis="both", which="major", labelsize=tam_font)
+axs[0].legend(
+    [rf"M08; $\langle \rho \rangle$ = {dens_media_str} " r"$s^{-1}$"], fontsize=tam_font
+)
+axs[0].grid(True)
+
+# Adicionar a identificação 'a)' ao primeiro gráfico
+axs[0].annotate(
+    "(a)",
+    xy=(0.01, 0.95),
+    xycoords="axes fraction",
+    fontsize=tam_font,
+    fontweight="bold",
+)
 
 # Plotando o gráfico de diâmetros
-plt.figure(figsize=(10, 6))
-plt.plot(tempo_intervalo_colx, lista_diam_coly, label="Dados de Diâmetro")
-# plt.title("Diâmetro por intervalo de tempo", fontsize=tam_font)
-plt.legend([rf"$\langle d_h \rangle$ = {diam_final_str} nm"], fontsize=tam_font)
-plt.xlabel("Tempo (s)", fontsize=tam_font)
-plt.ylabel("Diâmetro hidrodinâmico (nm)", fontsize=tam_font)
-plt.xticks(fontsize=tam_font)
-plt.yticks(fontsize=tam_font)
-plt.grid(True)
-plt.savefig("graficos/graf_diametros_dados_filtrados.pdf", bbox_inches="tight")
+axs[1].plot(tempo_intervalo_colx, lista_diam_coly, label="Valores de Diâmetros")
+axs[1].set_xlabel("Tempo (s)", fontsize=tam_font)
+axs[1].set_ylabel("Diâmetro hidrodinâmico (nm)", fontsize=tam_font)
+axs[1].tick_params(axis="both", which="major", labelsize=tam_font)
+axs[1].legend([rf"M08; $\langle d_h \rangle$ = {diam_final_str} nm"], fontsize=tam_font)
+axs[1].grid(True)
+
+# Adicionar a identificação 'b)' ao segundo gráfico
+axs[1].annotate(
+    "(b)",
+    xy=(0.01, 0.95),
+    xycoords="axes fraction",
+    fontsize=tam_font,
+    fontweight="bold",
+)
+
+# Ajustar espaçamento entre os subplots
+plt.tight_layout()
+
+# Salvar figura
+plt.savefig("graficos/graficos_densidade_e_diametro.pdf", bbox_inches="tight")
 # plt.show()

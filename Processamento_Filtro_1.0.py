@@ -21,9 +21,9 @@ def lowpass_filter(data, cutoff, fs, order=5):
 
 
 # Parâmetros do filtro
-cutoff_frequency = 16  # Frequência de corte do filtro (em Hz)
+cutoff_frequency = 35  # Frequência de corte do filtro (em Hz)
 sampling_rate = 1 / 0.0032  # Taxa de amostragem dos dados (em Hz)
-filter_order = 4  # Ordem do filtro
+filter_order = 2  # Ordem do filtro
 
 # Lista para armazenar os dados que estão na 2ª coluna do arquivo de origem
 dados_col2 = []
@@ -31,9 +31,9 @@ dados_col2 = []
 # Define o número máximo de linhas que serão lidas do arquivo.csv
 max_linhas = 125000
 
-# Abre o arquivo de oriigem em modo de leitura
+# Abre o arquivo de origem em modo de leitura
 with open(
-    "Dados/APD/12-08-2024/amostra3_1.100/T0074CH4.CSV", "r"
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0075CH4.CSV", "r"
 ) as arquivo:
     leitor_csv = csv.reader(arquivo)
 
