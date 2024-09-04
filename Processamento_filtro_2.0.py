@@ -1,3 +1,5 @@
+# Esta versão do scrip é capaz de processar vários arquivos de uma única vez.
+
 import csv
 import os
 import matplotlib.pyplot as plt
@@ -21,25 +23,25 @@ def lowpass_filter(data, cutoff, fs, order=5):
 
 
 # Parâmetros do filtro
-cutoff_frequency = 35  # Frequência de corte do filtro (em Hz)
+cutoff_frequency = 36.5  # Frequência de corte do filtro (em Hz)
 sampling_rate = 1 / 0.0032  # Taxa de amostragem dos dados (em Hz)
-filter_order = 2  # Ordem do filtro
+filter_order = 4  # Ordem do filtro
 
 # Define o número máximo de linhas que serão lidas de cada arquivo.csv
 max_linhas = 125000
 
 # Lista com os caminhos dos arquivos a serem processados
 caminhos_arquivos = [
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0064CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0069CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0070CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0071CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0072CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0073CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0074CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0075CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0076CH4.CSV",
-    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0077CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0059CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0060CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0061CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0064CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0065CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0066CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0067CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0069CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0070CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra2_1.80/T0071CH4.CSV",
     # Adicione mais caminhos conforme necessário
 ]
 
