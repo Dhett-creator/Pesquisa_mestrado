@@ -1,4 +1,4 @@
-# Esta versão do scrip é capaz de calcular a autocorrelação e a correlação cruzada
+# Esta versão do script é capaz de calcular a autocorrelação e a correlação cruzada
 # de vários arquivos de uma única vez.
 
 import numpy as np
