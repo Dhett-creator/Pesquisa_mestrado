@@ -1,4 +1,7 @@
-# Esse script realiza o calculo do diâmetro médio para diferentes concentrações da mesma amostra.
+"""
+Esse script faz a contagem de picos e o cálculo do diâmetro para diferentes 
+concentrações da mesma amostra
+"""
 
 import math
 import matplotlib.pyplot as plt
@@ -15,6 +18,13 @@ tempo_intervalo_colx = None
 # Definir o intervalo para calcular a média dos diâmetros
 intervalo_inicio = 7765
 intervalo_fim = None
+
+# Lista de rótulos customizáveis para cada concentração
+rotulos_concentracoes = [
+    "Concentração = 1:50 mL",
+    "Concentração = 1:60 mL",
+    "Concentração = 1:70 mL",
+]
 
 # Loop para processar os arquivos
 for i in tqdm(range(1, 4), desc="Calculando diâmetros"):
@@ -74,15 +84,16 @@ tam_font = 16
 
 plt.figure(figsize=(12, 7))
 
+# Plotar os dados usando os rótulos customizáveis
 for j, (diametros, diam_final) in enumerate(
     zip(todas_diametros, medias_diametros), start=1
 ):
-    file_label = f"C{str(j).zfill(2)}"
+    rotulo_customizado = rotulos_concentracoes[j - 1]  # Usar o rótulo correspondente
     diam_final_str = f"{diam_final:.2f}".replace(".", ",")
     plt.plot(
         tempo_intervalo_colx,
         diametros,
-        label=rf"{file_label}; $\langle d_h \rangle$ = {diam_final_str} nm",
+        label=rf"{rotulo_customizado}; $\langle d_h \rangle$ = {diam_final_str} nm",
     )
 plt.xlabel("Tempo (s)", fontsize=tam_font)
 plt.ylabel("Diâmetro hidrodinâmico (nm)", fontsize=tam_font)
@@ -93,7 +104,7 @@ plt.grid(True)
 plt.legend(
     fontsize=tam_font,
     loc="upper right",
-    ncol=2,
+    ncol=1,  # Legenda em uma única coluna
     bbox_to_anchor=(1, 1),
     title_fontsize=tam_font,
 )
@@ -104,9 +115,9 @@ print("-" * 55)
 
 # Imprimir os resultados em uma única coluna
 for j, diam_final in enumerate(medias_diametros, start=1):
-    file_label = f"C{str(j).zfill(2)}"
+    rotulo_customizado = rotulos_concentracoes[j - 1]
     diam_final_str = f"{diam_final:.2f}".replace(".", ",")
-    print(f"{file_label}; ⟨d_h⟩ = {diam_final_str} nm")
+    print(f"{rotulo_customizado}; ⟨d_h⟩ = {diam_final_str} nm")
 
 print("-" * 55)
 

@@ -1,3 +1,8 @@
+"""
+Esse script realiza o processamento e a filtragem dos dados para diferentes 
+concentrações da mesma amostra
+"""
+
 import csv
 import os
 import matplotlib.pyplot as plt
@@ -21,18 +26,18 @@ def lowpass_filter(data, cutoff, fs, order=5):
 
 
 # Parâmetros do filtro
-cutoff_frequency = 36.5  # Frequência de corte do filtro (em Hz)
+cutoff_frequency = 55.8  # Frequência de corte do filtro (em Hz)
 sampling_rate = 1 / 0.0032  # Taxa de amostragem dos dados (em Hz)
-filter_order = 4  # Ordem do filtro
+filter_order = 2  # Ordem do filtro
 
 # Define o número máximo de linhas que serão lidas de cada arquivo.csv
 max_linhas = 125000
 
 # Lista com os caminhos dos 3 arquivos a serem processados
 caminhos_arquivos = [
-    "Dados/APD/xx-07-2024/amostra2_1.60/T0030CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.70/T0040CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0060CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra1_1.50/T0001CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0069CH4.CSV",
+    "Dados/APD/xx-07-2024/amostra1_1.70/T0029CH4.CSV",
 ]
 
 # Processamento de múltiplos arquivos (apenas 3)
