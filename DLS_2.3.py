@@ -1,3 +1,8 @@
+"""
+Essa versão do script realiza a contagem de picos e realiza o cálculo do diâmetro 
+para 10 medidas consecutivas da mesma amostra
+"""
+
 import math
 import matplotlib.pyplot as plt
 import numpy as np

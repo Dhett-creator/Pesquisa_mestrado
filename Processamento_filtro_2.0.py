@@ -23,7 +23,7 @@ def lowpass_filter(data, cutoff, fs, order=5):
 
 
 # Parâmetros do filtro
-cutoff_frequency = 36.5  # Frequência de corte do filtro (em Hz)
+cutoff_frequency = 27.3  # Frequência de corte do filtro (em Hz)
 sampling_rate = 1 / 0.0032  # Taxa de amostragem dos dados (em Hz)
 filter_order = 4  # Ordem do filtro
 
@@ -32,17 +32,16 @@ max_linhas = 125000
 
 # Lista com os caminhos dos arquivos a serem processados
 caminhos_arquivos = [
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0059CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0060CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0061CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0064CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0065CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0066CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0067CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0069CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0070CH4.CSV",
-    "Dados/APD/xx-07-2024/amostra2_1.80/T0071CH4.CSV",
-    # Adicione mais caminhos conforme necessário
+    "Dados/APD/12-08-2024/amostra3_1.100/T0074CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0075CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0076CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0077CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0078CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0080CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0081CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0082CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0083CH4.CSV",
+    "Dados/APD/12-08-2024/amostra3_1.100/T0084CH4.CSV",
 ]
 
 # Processamento de múltiplos arquivos
