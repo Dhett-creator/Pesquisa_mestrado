@@ -64,27 +64,27 @@ tam_font = 16
 
 fig, ax = plt.subplots(figsize=(10, 6))
 
-ax.plot(lags, autocorrelacao1, label="Autocorrelação dos dados originais")
-ax.plot(lags, autocorrelacao2, label="Autocorrelação dos dados filtrados")
-(cross_corr_plot,) = ax.plot(
+ax.plot(lags, autocorrelacao1, label="Dados originais")
+ax.plot(lags, autocorrelacao2, label="Dados filtrados")
+"""(cross_corr_plot,) = ax.plot(
     lags,
     correlacao_cruzada,
     label=f"Correlação cruzada entre ambos os dados",
     linestyle="--",
     color="C2",  # Ajusta a cor da curva de correlação cruzada (pode ser personalizado)
-)
+)"""
 
 # Destaque o valor inicial da correlação cruzada com uma bolinha da mesma cor da curva
-ax.scatter(
+"""ax.scatter(
     0,
     altura_correlacao_cruzada,
     color=cross_corr_plot.get_color(),  # Usa a mesma cor da curva de correlação cruzada
     s=25,  # Tamanho da bolinha
     zorder=5,  # Garantir que a bolinha fique na frente
 )
-
+"""
 # Adiciona anotação com setinha à direita do valor destacado
-ax.annotate(
+"""ax.annotate(
     f"{altura_correlacao_cruzada_str}",
     xy=(0, altura_correlacao_cruzada),
     xytext=(70, -5),  # ("posição horizontal", "posição vertical")
@@ -92,7 +92,7 @@ ax.annotate(
     ha="center",
     fontsize=tam_font,
     arrowprops=dict(facecolor=cross_corr_plot.get_color(), arrowstyle="->", shrinkB=7),
-)
+)"""
 
 ax.set_xlabel("Lag", fontsize=tam_font)
 ax.set_ylabel("Correlação", fontsize=tam_font)
