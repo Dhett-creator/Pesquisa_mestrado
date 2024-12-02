@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 
 # Leitura do arquivo.txt
-dados_leitura = np.loadtxt("dados_processados/dados_filtrados.txt", delimiter=",")
+dados_leitura = np.loadtxt("dados_processados/dados_filtrados_M8.txt", delimiter=",")
 
 col1 = dados_leitura[:, 0].astype(float).tolist()  # Dados de intensidade luminosa
 col2 = dados_leitura[:, 1].astype(float).tolist()  # Dados de tempo
@@ -120,10 +120,10 @@ dens_media_str = f"{dens_media:.2f}".replace(".", ",")
 diam_final = np.mean(lista_diam_coly[7765:])
 diam_final_str = f"{diam_final:.2f}".replace(".", ",")
 
-# Criar subplots
-fig, axs = plt.subplots(2, 1, figsize=(12, 14))
+# Criar subplots lado a lado
+fig, axs = plt.subplots(1, 2, figsize=(25, 8))  # 1 linha, 2 colunas
 
-# Plotando o gráfico de densidade de picos
+# Plotando o gráfico de densidade de picos no primeiro eixo
 axs[0].plot(
     tempo_intervalo_colx, densidade_picos_coly, label="Valores da densidade de máximos"
 )
@@ -144,7 +144,7 @@ axs[0].annotate(
     fontweight="bold",
 )
 
-# Plotando o gráfico de diâmetros
+# Plotando o gráfico de diâmetros no segundo eixo
 axs[1].plot(tempo_intervalo_colx, lista_diam_coly, label="Valores de Diâmetros")
 axs[1].set_xlabel("Tempo (s)", fontsize=tam_font)
 axs[1].set_ylabel("Diâmetro hidrodinâmico (nm)", fontsize=tam_font)
