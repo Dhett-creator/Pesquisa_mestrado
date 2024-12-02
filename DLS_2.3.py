@@ -57,7 +57,7 @@ for i in tqdm(range(1, 11), desc="Calculando diâmetros"):
             dm = (
                 ((kb * temp) / (3 * math.pi * eta))
                 * (q**2)
-                * (3 / (math.pi * math.sqrt(2) * rho))
+                * (math.sqrt(6) / (2 * math.pi * rho))
             )
             dnm = dm * 1e9  # Converter para nanômetros
             list_dnm.append(dnm)

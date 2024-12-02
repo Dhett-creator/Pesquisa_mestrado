@@ -95,7 +95,7 @@ ax.plot(lags, autocorrelacao2, label="Dados filtrados")
 )"""
 
 ax.set_xlabel("Lag", fontsize=tam_font)
-ax.set_ylabel("Correlação", fontsize=tam_font)
+ax.set_ylabel("Autocorrelação", fontsize=tam_font)
 ax.legend(fontsize=tam_font)
 ax.tick_params(axis="both", which="major", labelsize=tam_font)
 ax.grid(True)
