@@ -23,9 +23,10 @@ def lowpass_filter(data, cutoff, fs, order=5):
 
 
 # Parâmetros do filtro
-cutoff_frequency = 16  # Frequência de corte do filtro (em Hz)
+# Eq. 1, frequências usadas: A1=35, A2=22 e A3=16
+cutoff_frequency = 35  # Frequência de corte do filtro (em Hz)
 sampling_rate = 1 / 0.0032  # Taxa de amostragem dos dados (em Hz)
-filter_order = 4  # Ordem do filtro
+filter_order = 2  # Ordem do filtro
 
 # Define o número máximo de linhas que serão lidas de cada arquivo.csv
 max_linhas = 125000
@@ -33,16 +34,16 @@ max_linhas = 125000
 # Lista com os caminhos dos arquivos a serem processados
 caminhos_arquivos = [
     # ---------------------------- Amostra 1 -----------------------------
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0064CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0065CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0066CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0069CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0070CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0071CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0074CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0075CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0076CH4.CSV",
-    # "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0077CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0064CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0065CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0066CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0069CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0070CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0071CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0074CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0075CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0076CH4.CSV",
+    "Dados/APD/06-06-2024/120nm concent.60-1 20g temp.22 T0077CH4.CSV",
     # ---------------------------- Amostra 2 -----------------------------
     # "Dados/APD/xx-07-2024/amostra2_1.80/T0059CH4.CSV",
     # "Dados/APD/xx-07-2024/amostra2_1.80/T0060CH4.CSV",
@@ -55,16 +56,16 @@ caminhos_arquivos = [
     # "Dados/APD/xx-07-2024/amostra2_1.80/T0070CH4.CSV",
     # "Dados/APD/xx-07-2024/amostra2_1.80/T0071CH4.CSV",
     # ---------------------------- Amostra 3 -----------------------------
-    "Dados/APD/12-08-2024/amostra3_1.100/T0074CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0075CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0076CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0077CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0078CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0080CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0081CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0082CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0083CH4.CSV",
-    "Dados/APD/12-08-2024/amostra3_1.100/T0084CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0074CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0075CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0076CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0077CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0078CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0080CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0081CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0082CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0083CH4.CSV",
+    # "Dados/APD/12-08-2024/amostra3_1.100/T0084CH4.CSV",
 ]
 
 # Processamento de múltiplos arquivos
