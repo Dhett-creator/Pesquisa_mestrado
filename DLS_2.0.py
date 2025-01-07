@@ -110,7 +110,7 @@ with open("arquivos_gerados/diametro_por_tempo.txt", "r") as arquivo:
 plt.rcParams["font.family"] = ["DeJavu Serif"]
 plt.rcParams["font.serif"] = ["Times New Roman"]
 
-tam_font = 19
+tam_font = 24
 
 # Densidade média de máximos
 dens_media = np.mean(densidade_picos_coly[7765:])
